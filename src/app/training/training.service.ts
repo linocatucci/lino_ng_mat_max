@@ -34,15 +34,15 @@ export class TrainingService {
         .snapshotChanges()
         .pipe(
           map(docArray => {
-            throw new Error();
-            // return docArray.map(doc => {
-            //   return {
-            //     id: doc.payload.doc.id,
-            //     name: doc.payload.doc.data().name,
-            //     duration: doc.payload.doc.data().duration,
-            //     calories: doc.payload.doc.data().calories
-            //   };
-            // });
+            // throw new Error();
+            return docArray.map(doc => {
+              return {
+                id: doc.payload.doc.id,
+                name: doc.payload.doc.data().name,
+                duration: doc.payload.doc.data().duration,
+                calories: doc.payload.doc.data().calories
+              };
+            });
           })
         )
         .subscribe(
@@ -52,11 +52,13 @@ export class TrainingService {
             this.uiService.loadingStateChanged.next(false);
           },
           error => {
+            this.uiService.loadingStateChanged.next(false);
             this.uiService.showSnackbar(
-              'Fetching exercises failed, please try again',
+              'Fetching exercises failed, please try again later',
               null,
               3000
             );
+            this.exercisesChanged.next(null);
           }
         )
     );
