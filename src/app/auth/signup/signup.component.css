@@ -1,0 +1,24 @@
+#container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  height: 700px;
+  border: 1px solid black;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.child {
+  width: 200px;
+  height: 200px;
+}
+
+#child1 {
+  background: red;
+}
+#child2 {
+  background: green;
+}
+#child3 {
+  background: blue;
+}

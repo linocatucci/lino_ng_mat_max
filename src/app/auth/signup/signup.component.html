@@ -1,0 +1,27 @@
+<section class="sign-up-form">
+  <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <mat-form-field>
+      <input type="email" matInput placeholder="Your email" ngModel name="email" email required #emailInput="ngModel">
+      <mat-error *ngIf="emailInput.hasError('required')">field must not be empty</mat-error>
+      <mat-error *ngIf="!emailInput.hasError('required')">E-mail is invalid</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" matInput placeholder="Your password" ngModel name="password" required minlength="6" #pwInput="ngModel">
+      <mat-hint align="end"> {{pwInput.value?.length}} / 6</mat-hint>
+      <mat-error>Must be 6 char long</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="myDatepicker" placeholder="Your birthdate" [max]="maxDate" ngModel name="birthday" required>
+      <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #myDatepicker></mat-datepicker>
+    </mat-form-field>
+    <mat-checkbox ngModel name="agree" required color="">Please agree with terms and conditions</mat-checkbox>
+    <button *ngIf="!isLoading" type="submit" color="primary" mat-raised-button [disabled]="!f.valid">Sumbit</button>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+  </form>
+</section>
+<!-- <section id="container">
+  <div id="child1" class="child"></div>
+  <div id="child2" class="child"></div>
+  <div id="child3" class="child"></div>
+</section> -->
