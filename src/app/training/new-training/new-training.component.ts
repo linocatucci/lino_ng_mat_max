@@ -35,29 +35,6 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
       }
     );
     this.fetchExercises();
-    // this.availableExercises = this.trainingService.fetchAvailableExercises();
-    // this.availableExercises;
-
-    // this.db
-    //   .collection('availableExercises')
-    //   .snapshotChanges()
-    //   .pipe(
-    //     map(docArray => {
-    //       return docArray.map(doc => {
-    //         return {
-    //           id: doc.payload.doc.id,
-    //           name: doc.payload.doc.data().name,
-    //           duration: doc.payload.doc.data().duration,
-    //           calories: doc.payload.doc.data().calories
-    //         };
-    //       });
-    //     })
-    //   )
-    //   .subscribe((exercises: TrainingExercise[]) => {
-    //     this.availableExercises = exercises;
-    //     // this.exercisesChanged.next([...this.availableExercises]);
-    //     console.log(exercises);
-    //   });
   }
 
   onNewTrainingStarted(form: NgForm) {
