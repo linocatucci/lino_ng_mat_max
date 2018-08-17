@@ -21,8 +21,10 @@ export class PastTrainingsComponent
   dataSource = new MatTableDataSource<TrainingExercise>();
   subscription: Subscription;
 
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort)
+  sort: MatSort;
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
 
   constructor(private trainingService: TrainingService) {}
 
@@ -46,6 +48,8 @@ export class PastTrainingsComponent
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

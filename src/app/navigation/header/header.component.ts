@@ -14,7 +14,8 @@ import {
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  @Output() sidenavToggle = new EventEmitter<void>();
+  @Output()
+  sidenavToggle = new EventEmitter<void>();
   isAuth = false;
   authSubscription: Subscription;
 
@@ -29,9 +30,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.authSubscription.unsubscribe();
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
   }
-  
+
   onToggleSidenav() {
     this.sidenavToggle.emit();
   }

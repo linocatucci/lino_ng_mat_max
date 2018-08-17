@@ -15,7 +15,8 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./sidenav-list.component.css']
 })
 export class SidenavListComponent implements OnInit, OnDestroy {
-  @Output() closeSideNav = new EventEmitter<void>();
+  @Output()
+  closeSideNav = new EventEmitter<void>();
   authSubscription: Subscription;
   isAuth = false;
 
@@ -30,7 +31,9 @@ export class SidenavListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.authSubscription.unsubscribe();
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
   }
 
   onClose() {
