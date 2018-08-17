@@ -1,27 +1,21 @@
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { MaterialModule } from './../material.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { PastTrainingsComponent } from './past-trainings/past-trainings.component';
 import { NewTrainingComponent } from './new-training/new-training.component';
 import { CurrentTrainingComponent } from './current-training/current-training.component';
 import { TrainingComponent } from './training.component';
+import { StopTrainingComponent } from './current-training/stop.training.component';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [
     TrainingComponent,
     CurrentTrainingComponent,
     NewTrainingComponent,
-    PastTrainingsComponent
+    PastTrainingsComponent,
+    StopTrainingComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MaterialModule,
-    FlexLayoutModule
-  ],
-  exports: []
+  imports: [AngularFirestoreModule, SharedModule],
+  entryComponents: [StopTrainingComponent]
 })
 export class TrainingsModule {}
