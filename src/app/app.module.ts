@@ -34,9 +34,9 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AuthModule,
     TrainingsModule,
-    SharedModule
+    SharedModule,
+    AuthModule
   ],
   providers: [AuthService, AuthGuard, TrainingService, UIService],
   bootstrap: [AppComponent]
