@@ -1,4 +1,4 @@
-import { TrainingsModule } from './training/trainings.module';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { environment } from './../environments/environment';
 import { AuthGuard } from './auth/auth.guard.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -34,9 +34,9 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
-    TrainingsModule,
     SharedModule,
-    AuthModule
+    AuthModule,
+    AngularFirestoreModule
   ],
   providers: [AuthService, AuthGuard, TrainingService, UIService],
   bootstrap: [AppComponent]
