@@ -76,6 +76,7 @@ export class TrainingService {
     );
     this.exerciseChanged.next({ ...this.runningExercise });
   }
+
   completeExercise() {
     this.addDataToDatabase({
       ...this.runningExercise,
