@@ -7,6 +7,8 @@ import { AuthData } from './auth-data.model';
 import { Subject } from 'rxjs/Subject';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { TrainingService } from '../training/training.service';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../app.reducer';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +21,8 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private trainingService: TrainingService,
     private snackBar: MatSnackBar,
-    private uiService: UIService
+    private uiService: UIService,
+    private store: Store<{ ui: fromApp.State }>
   ) {}
 
   registerUser(authData: AuthData) {
@@ -28,16 +31,19 @@ export class AuthService {
     //   userId: Math.round(Math.random() * 10000).toString()
     // };
     // this is a promise!
-    this.uiService.loadingStateChanged.next(true);
+    // this.uiService.loadingStateChanged.next(true);
+    this.store.dispatch({ type: 'START_LOADING' });
     this.afAuth.auth
       .createUserWithEmailAndPassword(authData.email, authData.password)
       .then(result => {
         console.log(result);
-        this.uiService.loadingStateChanged.next(false);
+        // this.uiService.loadingStateChanged.next(false);
+        this.store.dispatch({ type: 'STOP_LOADING' });
         this.authSuccess();
       })
       .catch(error => {
-        this.uiService.loadingStateChanged.next(false);
+        // this.uiService.loadingStateChanged.next(false);
+        this.store.dispatch({ type: 'STOP_LOADING' });
         // this.snackBar.open(error.message, null, { duration: 3000 });
         this.uiService.showSnackbar(error, null, 3000);
       });
@@ -49,17 +55,20 @@ export class AuthService {
     //   userId: Math.round(Math.random() * 10000).toString()
     // };
     // this is a promise!
-    this.uiService.loadingStateChanged.next(true);
+    // this.uiService.loadingStateChanged.next(true);
+    this.store.dispatch({ type: 'START_LOADING' });
     this.afAuth.auth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then(result => {
         console.log(result);
-        this.uiService.loadingStateChanged.next(false);
+        // this.uiService.loadingStateChanged.next(false);
+        this.store.dispatch({ type: 'STOP_LOADING' });
         this.authSuccess();
       })
       .catch(error => {
         console.log(error);
-        this.uiService.loadingStateChanged.next(false);
+        // this.uiService.loadingStateChanged.next(false);
+        this.store.dispatch({ type: 'STOP_LOADING' });
         // this.snackBar.open(error.message, null, { duration: 3000 });
         this.uiService.showSnackbar(error, null, 3000);
         this.router.navigate(['/signup']);

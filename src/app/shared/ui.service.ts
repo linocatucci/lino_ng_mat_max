@@ -4,7 +4,7 @@ import { Injectable } from '../../../node_modules/@angular/core';
 
 /*
 Wanneer de register user and login user wordt aangeroepen en deze is nog niet voltooid dan moet er een spinner getoond worden
-wanneer de spinner getoond wordt moet de butoon niet getoond worden
+wanneer de spinner getoond wordt moet de button niet getoond worden
 bij error moet de spinner ook  getoond worden
 
 

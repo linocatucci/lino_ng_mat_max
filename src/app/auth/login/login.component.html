@@ -11,7 +11,7 @@
       <mat-error *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">Password cannot be empty</mat-error>
       <mat-hint>Must be 6 char long</mat-hint>
     </mat-form-field>
-    <button *ngIf="!isLoading" type="submit" color="primary" mat-raised-button [disabled]="!loginForm.valid">Login</button>
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <button *ngIf="!(isLoading$ | async)" type="submit" color="primary" mat-raised-button [disabled]="!loginForm.valid">Login</button>
+    <mat-spinner *ngIf="(isLoading$ | async)"></mat-spinner>
   </form>
 </section>
